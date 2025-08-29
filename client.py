@@ -18,9 +18,9 @@ import requests
 st.title("Azure Command Execution Request Dashboard")
 
 # Get expense requests from server
-response = requests.get("http://localhost:9001/requests")
-requests_data = response.json()
-
+#response = requests.get("http://localhost:9001/requests")
+#requests_data = response.json()
+requests_data = []
 # Filter only pending requests
 pending_requests = [req for req in requests_data if req["status"] == "pending"]
 
@@ -54,4 +54,5 @@ else:
                 ):
                     requests.put(f"http://localhost:9001/request/{request['id']}", json={"status": "rejected"})
                     st.error("Request rejected!")
+
                     st.rerun()
